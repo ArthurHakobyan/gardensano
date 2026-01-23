@@ -1,138 +1,109 @@
 ---
-interface GalleryImage {
-  src: string;
-  alt: string;
-}
+const images = [
+  {
+    src:"/assets/gallery/img1.jpg",
+    alt:"garden"
+},
+  {
+    src:"/assets/gallery/img2.jpg",
+    alt:"garden"
+},
+  {
+    src:"/assets/gallery/img3.jpg",
+    alt:"garden"
+},
+  {
+    src:"/assets/gallery/img4.jpg",
+    alt:"garden"
+},
+  {
+    src:"/assets/gallery/img5.jpg",
+    alt:"garden"
+},
+  {
+    src:"/assets/gallery/img6.jpg",
+    alt:"garden"
+},
+  {
+    src:"/assets/gallery/img7.jpg",
+    alt:"garden"
+},
+  {
+    src:"/assets/gallery/img8.jpg",
+    alt:"garden"
+},
 
-const images: GalleryImage[] = [
-  { src: '/assets/gallery/img1.jpg', alt: 'Zahrada s květinami'},
-  { src: '/assets/gallery/img2.jpg', alt: 'Zahrada u domu' },
-  { src: '/assets/gallery/img3.jpg', alt: 'Detail rostliny' },
-  { src: '/assets/gallery/img4.jpg', alt: 'Detail rostliny' },
-  { src: '/assets/gallery/img5.jpg', alt: 'Detail rostliny' },
-  { src: '/assets/gallery/img6.jpg', alt: 'Detail rostliny' },
-  { src: '/assets/gallery/img7.jpg', alt: 'Detail rostliny' },
-  { src: '/assets/gallery/img8.jpg', alt: 'Detail rostliny' },
 ];
 ---
 
-<div class="gallery-container">
-  <div class="slider" id="mainSlider">
-    {images.map((img, index) => (
-      <div class="slide">
-        {/* We use index here to make the Alt text unique for Screen Readers */}
-        <img 
-          src={img.src} 
-          alt={`${img.alt} - obrázek č. ${index + 1}`} 
-          loading={index === 0 ? "eager" : "lazy"} 
-        />
-      </div>
-    ))}
-  </div>
+<div class="gallery">
 
-  <button class="nav-btn prev" id="btnPrev" aria-label="Předchozí">❮</button>
-  <button class="nav-btn next" id="btnNext" aria-label="Další">❯</button>
-  
-  <div class="counter">
-    <span id="current">1</span> / {images.length}
-  </div>
-</div>
+		{images.map((image) => (
+			<div class="gallery-item">
+				<img class="gallery-image" src={image.src} alt={image.alt} />
+			</div>
+		))} 
 
-<style>
-  .gallery-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 2rem auto;
-    overflow: hidden;
-    border-radius: 12px;
-    background: #111;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-  }
+	</div>
 
-  .slider {
-    display: flex;
-    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+  <style>
+    .container {
+	max-width: 100rem;
+	margin: 0 auto;
+	padding: 0 2rem 2rem;
+}
 
-  .slide {
-    min-width: 100%;
-    aspect-ratio: 16 / 9;
-  }
 
-  .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    user-select: none;
-    -webkit-user-drag: none;
-  }
 
-  .nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(4px);
-    color: white;
-    border: none;
-    padding: 1.5rem 1rem;
-    cursor: pointer;
-    z-index: 10;
-    font-size: 1.5rem;
-    transition: background 0.2s;
-  }
 
-  .nav-btn:hover {
-    background: rgba(255, 255, 255, 0.4);
-  }
 
-  .prev { left: 0; border-radius: 0 8px 8px 0; }
-  .next { right: 0; border-radius: 8px 0 0 8px; }
+.gallery {
+	display: flex;
+	flex-wrap: wrap;
+	/* Compensate for excess margin on outer gallery flex items */
+	margin: -1rem -1rem;
+}
 
-  .counter {
-    text-align: center;
-    color: #999;
-    padding: 15px;
-    font-family: sans-serif;
-    font-size: 0.9rem;
-  }
-</style>
+.gallery-item {
+	/* Minimum width of 24rem and grow to fit available space */
+	flex: 1 0 24rem;
+	/* Margin value should be half of grid-gap value as margins on flex items don't collapse */
+	margin: 1rem;
+	box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
+	overflow: hidden;
+}
 
-<script>
-  const slider = document.getElementById('mainSlider') as HTMLElement;
-  const btnPrev = document.getElementById('btnPrev') as HTMLButtonElement;
-  const btnNext = document.getElementById('btnNext') as HTMLButtonElement;
-  const currentLabel = document.getElementById('current') as HTMLElement;
-  
-  if (slider && btnPrev && btnNext && currentLabel) {
-    let index = 0;
-    const slidesCount = slider.children.length;
+.gallery-image {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 400ms ease-out;
+}
 
-    const move = (newIndex: number) => {
-      index = (newIndex + slidesCount) % slidesCount;
-      slider.style.transform = `translateX(-${index * 100}%)`;
-      currentLabel.textContent = (index + 1).toString();
-    };
+.gallery-image:hover {
+	transform: scale(1.15);
+}
 
-    btnNext.addEventListener('click', () => move(index + 1));
-    btnPrev.addEventListener('click', () => move(index - 1));
+/*
 
-    // Touch Support
-    let startX = 0;
-    slider.addEventListener('touchstart', (e: TouchEvent) => {
-      startX = e.touches[0].clientX;
-    }, { passive: true });
+The following rule will only run if your browser supports CSS grid.
 
-    slider.addEventListener('touchend', (e: TouchEvent) => {
-      const endX = e.changedTouches[0].clientX;
-      const diff = startX - endX;
+Remove or comment-out the code block below to see how the browser will fall-back to flexbox styling. 
 
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) move(index + 1);
-        else move(index - 1);
-      }
-    }, { passive: true });
-  }
-</script>
+*/
+
+@supports (display: grid) {
+	.gallery {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+		grid-gap: 2rem;
+	}
+
+	.gallery,
+	.gallery-item {
+		margin: 0;
+	}
+}
+
+  </style>
