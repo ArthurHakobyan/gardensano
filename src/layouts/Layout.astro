@@ -24,6 +24,7 @@ const { description, title } = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta property="og:image" content={new URL('/assets/logo-sano.png', Astro.site)} />
     <title>{title}</title>
     <ViewTransitions />
   </head>
