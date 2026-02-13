@@ -5,21 +5,21 @@ const services = [
     name: 'REALIZACE ZAHRAD',
     description:
       'Zajišťujeme kompletní realizaci zahrad od terénních úprav přes výsadbu až po finální dokončení. Pracujeme precizně, s důrazem na funkčnost, kvalitu provedení a dlouhodobý výsledek.',
-    bg: '/assets/realizace.png',
+    bg: '/assets/gallery/zahrada.png',
   },
   {
     step: '02',
     name: 'ÚDRŽBA ZELENĚ',
     description:
       'Postaráme se o pravidelnou i jednorázovou údržbu zahrad a zelených ploch. Díky odborné péči zůstane trávník, stromy i keře zdravé, upravené a reprezentativní po celý rok.',
-    bg: '/assets/udrzba.png',
+    bg: '/assets/gallery/travnik1.png',
   },
   {
     step: '03',
     name: 'KÁCENÍ STROMŮ',
     description:
       'Provádíme odborné kácení stromů s maximálním důrazem na bezpečnost a kontrolovaný postup. Zajistíme pokácení i následné zpracování a odvoz dřevní hmoty.',
-    bg: '/assets/kaceni.png',
+    bg: '/assets/gallery/kaceni-stromu.png',
   },
 ];
 
@@ -35,7 +35,7 @@ const services = [
           services.map((service) => (
             <div 
             style={`background:
-    linear-gradient(rgba(0,0,0,0.45)),
+    linear-gradient(rgba(0,0,0,0.55)),
     url('${service.bg}') center/cover no-repeat;`}
             class="bg-primary-500/10 dark:bg-primary-400/10 text-white flex flex-col gap-12 rounded-3xl px-6 py-8">
               <p class="text-sm">{service.step}</p>

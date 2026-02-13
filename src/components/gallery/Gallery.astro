@@ -1,27 +1,27 @@
 ---
 const images = [
   {
-    src:"/assets/gallery/img1.jpg",
+    src:"/assets/gallery/item1.png",
     alt:"garden"
 },
   {
-    src:"/assets/gallery/img2.jpg",
+    src:"/assets/gallery/item2.png",
     alt:"garden"
 },
   {
-    src:"/assets/gallery/img3.jpg",
+    src:"/assets/gallery/item3.png",
     alt:"garden"
 },
   {
-    src:"/assets/gallery/img4.jpg",
+    src:"/assets/gallery/zahrada.png",
     alt:"garden"
 },
   {
-    src:"/assets/gallery/img5.jpg",
+    src:"/assets/gallery/travnik1.png",
     alt:"garden"
 },
   {
-    src:"/assets/gallery/img6.jpg",
+    src:"/assets/gallery/kaceni-stromu.png",
     alt:"garden"
 },
   {
@@ -29,7 +29,12 @@ const images = [
     alt:"garden"
 },
   {
-    src:"/assets/gallery/img8.jpg",
+    src:"/assets/gallery/img1.jpg",
+    alt:"garden"
+},
+
+{
+    src:"/assets/gallery/item4.png",
     alt:"garden"
 },
 
@@ -44,6 +49,11 @@ const images = [
 			</div>
 		))} 
 
+	</div>
+
+	<div id="imageModal" class="modal">
+  		<span class="close-button">&times;</span>
+  		<img class="modal-content" id="fullImage">
 	</div>
 
   <style>
@@ -66,8 +76,9 @@ const images = [
 
 .gallery-item {
 	/* Minimum width of 24rem and grow to fit available space */
-	flex: 1 0 24rem;
+	flex: 0 0 24rem;
 	/* Margin value should be half of grid-gap value as margins on flex items don't collapse */
+	aspect-ratio: 1 / 1; /* Makes item a square */
 	margin: 1rem;
 	box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
 	overflow: hidden;
@@ -93,6 +104,49 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
 */
 
+/* Modal Background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+}
+
+/* Modal Image */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid white;
+    border-radius: 4px;
+}
+
+/* Close Button */
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #bbb;
+}
+
 @supports (display: grid) {
 	.gallery {
 		display: grid;
@@ -107,3 +161,21 @@ Remove or comment-out the code block below to see how the browser will fall-back
 }
 
   </style>
+
+  <script>
+  document.addEventListener('click', (e) => {
+    // Check if what we clicked is a gallery image
+    if (e.target.classList.contains('gallery-image')) {
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("fullImage");
+      
+      modal.style.display = "block";
+      modalImg.src = e.target.src;
+    }
+    
+    // Check if we clicked the close button or the modal background
+    if (e.target.id === 'imageModal' || e.target.classList.contains('close-button')) {
+      document.getElementById("imageModal").style.display = "none";
+    }
+  });
+</script>
