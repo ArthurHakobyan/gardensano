@@ -2,23 +2,28 @@
 const services = [
   {
     step: '01',
-    name: 'Návrh zahrad',
+    name: 'REALIZACE ZAHRAD',
     description:
-      'Navrhujeme funkční a estetické zahrady podle vašich přání. Dbáme na harmonii prostoru, výběr vhodných rostlin a propojení zahrady s okolím.',
+      'Zajišťujeme kompletní realizaci zahrad od terénních úprav přes výsadbu až po finální dokončení. Pracujeme precizně, s důrazem na funkčnost, kvalitu provedení a dlouhodobý výsledek.',
+    bg: '/assets/realizace.png',
   },
   {
     step: '02',
-    name: 'Realizace',
+    name: 'ÚDRŽBA ZELENĚ',
     description:
-      'Provádíme kompletní realizaci zahrad – od terénních úprav přes výsadbu stromů a keřů až po založení trávníků a závlahových systémů.',
+      'Postaráme se o pravidelnou i jednorázovou údržbu zahrad a zelených ploch. Díky odborné péči zůstane trávník, stromy i keře zdravé, upravené a reprezentativní po celý rok.',
+    bg: '/assets/udrzba.png',
   },
   {
     step: '03',
-    name: 'Údržba',
+    name: 'KÁCENÍ STROMŮ',
     description:
-      'Zajišťujeme pravidelnou údržbu zahrad po celý rok. Postaráme se o řez, hnojení, péči o trávník i sezónní práce, aby vaše zahrada byla stále v perfektní kondici.',
+      'Provádíme odborné kácení stromů s maximálním důrazem na bezpečnost a kontrolovaný postup. Zajistíme pokácení i následné zpracování a odvoz dřevní hmoty.',
+    bg: '/assets/kaceni.png',
   },
 ];
+
+
 ---
 
 <section class="py-16 sm:py-20">
@@ -28,11 +33,15 @@ const services = [
       <div class="grid gap-8 lg:grid-cols-3">
         {
           services.map((service) => (
-            <div class="bg-primary-500/10 dark:bg-primary-400/10 flex flex-col gap-12 rounded-3xl px-6 py-8">
+            <div 
+            style={`background:
+    linear-gradient(rgba(0,0,0,0.45)),
+    url('${service.bg}') center/cover no-repeat;`}
+            class="bg-primary-500/10 dark:bg-primary-400/10 text-white flex flex-col gap-12 rounded-3xl px-6 py-8">
               <p class="text-sm">{service.step}</p>
               <div class="flex flex-col gap-4">
                 <h3 class="text-xl font-medium">{service.name}</h3>
-                <p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
+                <p class="text-white/80 text-base sm:text-lg">
                   {service.description}
                 </p>
               </div>

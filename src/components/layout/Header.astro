@@ -39,10 +39,10 @@ const links = [
       >
         <span class="sr-only">gardensano</span>
         <img
-          class="h-4 w-auto"
-          width="45"
-          height="25"
-          :src="$store.theme.isDark ? '/assets/gardensano-logo-white.svg' : '/assets/gardensano-logo-black.svg'"
+          class="md:w-[80px]"
+          width="50"
+          height="50"
+          :src="$store.theme.isDark ? '/assets/logo-sano.svg' : '/assets/logo-sano.svg'"
           alt="gardensano"
         />
       </a>
@@ -136,12 +136,13 @@ const links = [
   >
     <div class="grid grid-cols-1 gap-16 pb-24 pt-6 lg:grid-cols-2 lg:pt-12">
       <div
-        class="bg-primary-500/10 dark:bg-primary-400/10 hidden items-center justify-center rounded-3xl px-6 py-8 lg:flex"
+        class="bg-primary-500/10 dark:bg-primary-400/10 hidden items-center justify-center rounded-3xl px-6 py-8 lg:flex nav-bg"
       >
         <p
-          class="text-primary-950/70 dark:text-primary-200/70 max-w-sm text-xl italic leading-loose"
+          class="text-white/90 dark:text-primary-200/70 max-w-sm text-xl italic leading-loose"
         >
-          <span class="font-medium">Gardensano</span> Je rodinná firma, která působí na trhu již od roku 2021.
+          REALIZUJEME ZAHRADY NA MÍRU A ZAJIŠŤUJEME  JEJICH DLOUHODOBOU PÉČI.
+          S NÁMI MÁTE JISTOTU, ŽE VAŠE ZELEŇ BUDE VŽDY V PERFEKTNÍ KONDICI
         </p>
       </div>
 
@@ -175,3 +176,11 @@ const links = [
     </div>
   </div>
 </header>
+
+<style>
+  .nav-bg {
+    background:
+    linear-gradient(rgba(0,0,0,0.5)),
+    url('/public/assets/nav-bg.png') center/cover no-repeat;
+  }
+</style>
