@@ -164,18 +164,24 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
   <script>
   document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
     // Check if what we clicked is a gallery image
-    if (e.target.classList.contains('gallery-image')) {
-      const modal = document.getElementById("imageModal");
-      const modalImg = document.getElementById("fullImage");
+    if (target && target.classList.contains('gallery-image')) {
+      const modal = document.getElementById("imageModal") as HTMLDivElement;
+      const modalImg = document.getElementById("fullImage") as HTMLImageElement;
       
-      modal.style.display = "block";
-      modalImg.src = e.target.src;
+      if (modal && modalImg) {
+        modal.style.display = "block";
+        modalImg.src = (target as HTMLImageElement).src;
+      }
     }
     
     // Check if we clicked the close button or the modal background
-    if (e.target.id === 'imageModal' || e.target.classList.contains('close-button')) {
-      document.getElementById("imageModal").style.display = "none";
+    if (target && (target.id === 'imageModal' || target.classList.contains('close-button'))) {
+      const modal = document.getElementById("imageModal") as HTMLDivElement;
+      if (modal) {
+        modal.style.display = "none";
+      }
     }
   });
 </script>
