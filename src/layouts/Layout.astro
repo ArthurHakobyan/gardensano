@@ -4,7 +4,6 @@ import '@fontsource/inter/latin-500.css';
 import { ViewTransitions } from 'astro:transitions';
 import Footer from '../components/layout/Footer.astro';
 import Header from '../components/layout/Header.astro';
-import linkImage from '../assets/leaves.png';
 
 interface Props {
   description: string;
@@ -17,6 +16,7 @@ const { description, title } = Astro.props;
 
 // Astro.site comes from astro.config.mjs
 const site = Astro.site;
+const linkImage = '/assets/leaves.png';
 const absoluteImageUrl = new URL(linkImage, site).href;
 ---
 
